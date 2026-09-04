@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://golden-secrets.vercel.app"),
+  metadataBase: new URL("https://www.alasraralthahabeya.com"),
 
   title: {
     default: "Al Asrar Al Thahabeya Technical Services | Dubai",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Al Asrar Al Thahabeya Technical Services | Dubai",
     description:
       "Professional technical services, maintenance, and property solutions in Dubai, UAE.",
-    url: "https://golden-secrets.vercel.app",
+    url: "https://www.alasraralthahabeya.com",
     siteName: "Al Asrar Al Thahabeya Technical Services",
     locale: "en_AE",
     type: "website",
