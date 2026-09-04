@@ -482,14 +482,14 @@ export default function Home() {
           NAVBAR
       ========================================================= */}
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-[#080808]/85 backdrop-blur-xl">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-10">
           {/* Logo */}
           <a
             href="#home"
             onClick={closeMenu}
             className="group flex items-center gap-3"
           >
-            <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border border-white/15 bg-white shadow-lg shadow-black/40">
+            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-white/15 bg-white shadow-lg shadow-black/40 md:h-14 md:w-14">
               <Image
                 src="/golden-secrets-logo.jpg"
                 alt="Golden Secrets Technical Services Logo"
@@ -582,7 +582,7 @@ export default function Home() {
           <button
             type="button"
             onClick={() => setMenuOpen((current) => !current)}
-            className="flex h-10 w-10 items-center justify-center border border-white/10 text-white md:hidden"
+            className="flex h-10 w-10 items-center justify-center border border-white/10 text-white transition hover:border-white/25 md:hidden"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
@@ -591,74 +591,87 @@ export default function Home() {
         </div>
 
         {/* Mobile Navigation */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden border-t border-white/10 bg-[#080808] md:hidden"
+<AnimatePresence>
+  {menuOpen && (
+    <motion.div
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: "auto" }}
+      exit={{ opacity: 0, height: 0 }}
+      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      className="overflow-hidden border-t border-white/10 bg-[#080808]/98 backdrop-blur-xl md:hidden"
+    >
+      <nav className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-5 sm:px-6">
+        {[
+          [t.nav.home, "#home"],
+          [t.nav.about, "#about"],
+          [t.nav.services, "#services"],
+          [t.nav.projects, "#projects"],
+          [t.nav.license, "#license"],
+          [t.nav.contact, "#contact"],
+        ].map(([label, href]) => (
+          <a
+            key={href}
+            href={href}
+            onClick={closeMenu}
+            className="py-1 text-sm text-white/65 transition hover:text-white"
+          >
+            {label}
+          </a>
+        ))}
+
+        {/* Mobile Actions */}
+        <div className="mt-2 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() =>
+              setLanguage((current) => (current === "en" ? "ar" : "en"))
+            }
+            dir="ltr"
+            className="flex h-12 items-center justify-center gap-2 border border-white/10 px-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/70 transition hover:border-[#9B111E] hover:text-white"
+            aria-label="Switch language"
+          >
+            <span
+              className={
+                language === "en" ? "text-white" : "text-white/35"
+              }
             >
-              <nav className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-6">
-                {[
-  [t.nav.home, "#home"],
-  [t.nav.about, "#about"],
-  [t.nav.services, "#services"],
-  [t.nav.projects, "#projects"],
-  [t.nav.license, "#license"],
-  [t.nav.contact, "#contact"],
-].map(([label, href]) => (
-                  <a
-                    key={href}
-                    href={href}
-                    onClick={closeMenu}
-                    className="text-sm text-white/65 transition hover:text-white"
-                  >
-                    {label}
-                  </a>
-                ))}
+              EN
+            </span>
 
-                <a
-                  href={whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={closeMenu}
-                  className="mt-2 inline-flex w-fit items-center gap-3 bg-[#9B111E] px-5 py-3 text-xs font-semibold uppercase tracking-wider"
-                >
+            <span className="text-white/20">/</span>
 
-                  <button
-  type="button"
-  onClick={() =>
-    setLanguage((current) => (current === "en" ? "ar" : "en"))
-  }
-  className="mt-2 flex w-fit items-center gap-2 border border-white/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-white/70 transition hover:border-[#9B111E] hover:text-white"
->
-  <span className={language === "en" ? "text-white" : "text-white/35"}>
-    EN
-  </span>
+            <span
+              className={
+                language === "ar" ? "text-white" : "text-white/35"
+              }
+            >
+              AR
+            </span>
+          </button>
 
-  <span className="text-white/20">/</span>
-
-  <span className={language === "ar" ? "text-white" : "text-white/35"}>
-    AR
-  </span>
-</button>
-
-                  {t.nav.quote}
-                  <ArrowRight size={15} />
-                </a>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
+          <a
+            href={whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="flex h-12 flex-1 items-center justify-center gap-3 bg-[#9B111E] px-4 text-xs font-semibold uppercase tracking-wider transition hover:bg-[#6E0F18]"
+          >
+            {t.nav.quote}
+            <ArrowRight size={15} />
+          </a>
+        </div>
+      </nav>
+    </motion.div>
+  )}
+</AnimatePresence>
+</header>
 
       {/* =========================================================
           HERO
       ========================================================= */}
       <section
         id="home"
-        className="relative flex min-h-screen items-center overflow-hidden"
+        className="relative flex min-h-[100svh] items-center overflow-hidden md:min-h-screen"
       >
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -674,7 +687,7 @@ export default function Home() {
 
         <div className="absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-[#9B111E]/10 blur-[120px]" />
 
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-24 lg:px-10">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-16 pt-28 sm:px-6 sm:pt-24 lg:px-10">
           <div className="max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 25 }}
@@ -693,7 +706,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 35 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-5xl font-semibold leading-[1.03] tracking-tight sm:text-6xl lg:text-8xl"
+              className="text-[42px] font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-8xl"
             >
               {t.hero.title}
               <br />
@@ -704,7 +717,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.25 }}
-              className="mt-7 max-w-2xl text-base leading-7 text-white/60 sm:text-lg"
+              className="mt-6 max-w-2xl text-[15px] leading-6 text-white/60 sm:mt-7 sm:text-lg sm:leading-7"
             >
               {t.hero.description}
             </motion.p>
@@ -713,13 +726,13 @@ export default function Home() {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35 }}
-              className="mt-9 flex flex-col gap-3 sm:flex-row"
+              className="mt-8 flex w-full flex-col gap-3 sm:mt-9 sm:flex-row"
             >
               <a
                 href={whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 bg-[#9B111E] px-7 py-4 text-sm font-semibold uppercase tracking-wider transition hover:bg-[#6E0F18]"
+                className="inline-flex h-12 w-full items-center justify-center gap-3 bg-[#9B111E] px-6 text-xs font-semibold uppercase tracking-[0.12em] transition hover:bg-[#6E0F18] sm:h-auto sm:w-auto sm:px-7 sm:py-4 sm:text-sm sm:tracking-wider"
               >
                 {t.hero.request}
                 <ArrowRight size={17} />
@@ -727,7 +740,7 @@ export default function Home() {
 
               <a
                 href="#services"
-                className="inline-flex items-center justify-center gap-3 border border-white/15 bg-black/20 px-7 py-4 text-sm font-semibold uppercase tracking-wider text-white transition hover:border-white/30 hover:bg-white/5"
+                className="inline-flex h-12 w-full items-center justify-center gap-3 border border-white/15 bg-black/20 px-6 text-xs font-semibold uppercase tracking-[0.12em] text-white transition hover:border-white/30 hover:bg-white/5 sm:h-auto sm:w-auto sm:px-7 sm:py-4 sm:text-sm sm:tracking-wider"
               >
                 {t.hero.explore}
                 <ChevronDown size={17} />
@@ -740,7 +753,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-24 grid max-w-3xl grid-cols-2 border-t border-white/15 pt-7 sm:grid-cols-4"
+            className="mt-16 grid max-w-3xl grid-cols-2 border-t border-white/15 pt-6 sm:mt-24 sm:grid-cols-4 sm:pt-7"
           >
             <div className="border-r border-white/10 pr-5">
               <div className="text-2xl font-semibold">08</div>
@@ -774,259 +787,301 @@ export default function Home() {
       </section>
 
       {/* =========================================================
-          ABOUT
-      ========================================================= */}
-      <section id="about" className="border-t border-white/10 bg-[#080808]">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-          <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-            <div>
-              <div className="mb-5 flex items-center gap-3">
-                <span className="h-px w-8 bg-[#9B111E]" />
+    ABOUT
+========================================================= */}
+<section
+  id="about"
+  className="border-t border-white/10 bg-[#080808]"
+>
+  <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-32">
+    <div className="grid gap-10 sm:gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-16">
+      
+      {/* Heading */}
+      <div>
+        <div className="mb-4 flex items-center gap-3 sm:mb-5">
+          <span className="h-px w-7 bg-[#9B111E] sm:w-8" />
 
-                <span className="text-xs uppercase tracking-[0.25em] text-white/40">
-                  {t.about.label}
-                </span>
-              </div>
-
-              <h2 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-                {t.about.title}
-                <br />
-                <span className="text-white/40">{t.about.titleAccent}.</span>
-              </h2>
-            </div>
-
-            <div>
-              <p className="text-lg leading-8 text-white/65">
-                {t.about.description}
-              </p>
-
-              <p className="mt-6 leading-7 text-white/40">
-                {t.about.description2}
-              </p>
-
-              <div className="mt-9 grid gap-4 sm:grid-cols-2">
-                {t.about.features.map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2
-                      size={17}
-                      className="shrink-0 text-[#9B111E]"
-                    />
-
-                    <span className="text-sm text-white/65">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <span className="text-[10px] uppercase tracking-[0.22em] text-white/40 sm:text-xs sm:tracking-[0.25em]">
+            {t.about.label}
+          </span>
         </div>
-      </section>
 
-      {/* =========================================================
-          WHY GOLDEN SECRETS
-      ========================================================= */}
-      <section className="border-t border-white/10 bg-[#080808]">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-          <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-            <div className="lg:sticky lg:top-32">
-              <div className="mb-5 flex items-center gap-3">
-                <span className="h-px w-8 bg-[#9B111E]" />
+        <h2 className="text-[36px] font-semibold leading-[1.08] tracking-tight sm:text-5xl">
+          {t.about.title}
+          <br />
+          <span className="text-white/40">
+            {t.about.titleAccent}.
+          </span>
+        </h2>
+      </div>
 
-                <span className="text-xs uppercase tracking-[0.25em] text-white/40">
-                  {t.why.label}
-                </span>
-              </div>
+      {/* Content */}
+      <div>
+        <p className="text-[16px] leading-7 text-white/65 sm:text-lg sm:leading-8">
+          {t.about.description}
+        </p>
 
-              <h2 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-                {t.why.title}
-                <br />
-                <span className="text-white/35">{t.why.titleAccent}</span>
-              </h2>
+        <p className="mt-5 text-sm leading-7 text-white/40 sm:mt-6 sm:text-base">
+          {t.about.description2}
+        </p>
 
-              <p className="mt-7 max-w-md text-sm leading-7 text-white/40">
-                {t.why.description}
-              </p>
-
-              <a
-                href={whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:text-[#9B111E]"
-              >
-                {t.why.work}
-                <ArrowRight size={15} />
-              </a>
-            </div>
-
-            <div className="grid border-l border-t border-white/10 sm:grid-cols-2">
-              {[
-  {
-    icon: ShieldCheck,
-    title: t.why.features[0].title,
-    text: t.why.features[0].text,
-  },
-  {
-    icon: Clock3,
-    title: t.why.features[1].title,
-    text: t.why.features[1].text,
-  },
-  {
-    icon: ClipboardCheck,
-    title: t.why.features[2].title,
-    text: t.why.features[2].text,
-  },
-  {
-    icon: Star,
-    title: t.why.features[3].title,
-    text: t.why.features[3].text,
-  },
-].map((feature, index) => {
-                const Icon = feature.icon;
-
-                return (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group min-h-[240px] border-b border-r border-white/10 p-8 transition hover:bg-white/[0.025]"
-                  >
-                    <div className="flex h-11 w-11 items-center justify-center border border-white/10 transition group-hover:border-[#9B111E]/50">
-                      <Icon
-                        size={20}
-                        strokeWidth={1.4}
-                        className="text-[#9B111E]"
-                      />
-                    </div>
-
-                    <h3 className="mt-10 text-lg font-medium">
-                      {feature.title}
-                    </h3>
-
-                    <p className="mt-4 text-sm leading-6 text-white/40">
-                      {feature.text}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================
-          SERVICES
-      ========================================================= */}
-      <section
-        id="services"
-        className="border-t border-white/10 bg-[#0C0C0C]"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-          <div className="grid gap-10 lg:grid-cols-[1fr_0.7fr] lg:items-end">
-            <div>
-              <div className="mb-5 flex items-center gap-3">
-                <span className="h-px w-8 bg-[#9B111E]" />
-
-                <span className="text-xs uppercase tracking-[0.25em] text-white/40">
-                  {t.services.label}
-                </span>
-              </div>
-
-              <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-                {t.services.title}
-                <br />
-                <span className="text-white/30">{t.services.titleAccent}</span>
-              </h2>
-            </div>
-
-            <p className="text-sm leading-7 text-white/40">
-              {t.services.description}
-            </p>
-          </div>
-
-          <div className="mt-20 border-t border-white/10">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-
-              return (
-                <motion.a
-                  href={whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  key={service.number}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.04,
-                  }}
-                  className="group relative grid min-h-[150px] grid-cols-[55px_1fr_auto] items-center gap-4 overflow-hidden border-b border-white/10 px-2 transition duration-500 sm:grid-cols-[90px_1fr_auto] sm:gap-8 sm:px-5 lg:grid-cols-[120px_1fr_80px]"
-                >
-                  <div className="absolute inset-0 -z-0 -translate-x-[101%] bg-[#9B111E] transition-transform duration-500 ease-out group-hover:translate-x-0" />
-
-                  <div className="relative z-10">
-                    <span className="text-sm tracking-[0.2em] text-white/25 transition-colors duration-300 group-hover:text-white/60">
-                      {service.number}
-                    </span>
-                  </div>
-
-                  <div className="relative z-10 py-8">
-                    <h3 className="text-lg font-medium transition-colors duration-300 group-hover:text-white sm:text-2xl lg:text-3xl">
-                      {isArabic ? service.arTitle : service.title}
-                    </h3>
-
-                    <p className="mt-3 max-w-2xl text-sm leading-6 text-white/35 transition-colors duration-300 group-hover:text-white/75">
-                      {isArabic ? service.arDescription : service.description}
-                    </p>
-                  </div>
-
-                  <div className="relative z-10 flex h-12 w-12 items-center justify-center border border-white/10 transition-all duration-300 group-hover:border-white/40 group-hover:bg-white/10">
-                    <Icon
-                      size={20}
-                      strokeWidth={1.4}
-                      className="text-white/35 transition-colors duration-300 group-hover:text-white"
-                    />
-                  </div>
-
-                  <div className="absolute right-5 top-1/2 hidden -translate-y-1/2 lg:block">
-                    <ArrowRight
-                      size={20}
-                      className="-translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
-                    />
-                  </div>
-                </motion.a>
-              );
-            })}
-          </div>
-
-          <div className="mt-10 flex flex-col justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
-            <div>
-              <span className="text-xs uppercase tracking-[0.2em] text-white/25">
-                {t.services.need}
-              </span>
-
-              <p className="mt-2 text-sm text-white/50">
-                {t.services.tell}
-              </p>
-            </div>
-
-            <a
-              href={whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-fit items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:text-[#9B111E]"
+        {/* Features */}
+        <div className="mt-7 grid gap-4 sm:mt-9 sm:grid-cols-2 sm:gap-4">
+          {t.about.features.map((item) => (
+            <div
+              key={item}
+              className="flex items-start gap-3"
             >
-              {t.services.request}
-              <ArrowRight size={16} />
-            </a>
-          </div>
+              <CheckCircle2
+                size={17}
+                className="mt-0.5 shrink-0 text-[#9B111E]"
+              />
+
+              <span className="text-sm leading-6 text-white/65">
+                {item}
+              </span>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* =========================================================
+    WHY GOLDEN SECRETS
+========================================================= */}
+<section className="border-t border-white/10 bg-[#080808]">
+  <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-32">
+    <div className="grid gap-10 sm:gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16">
+      
+      {/* Intro */}
+      <div className="lg:sticky lg:top-32">
+        <div className="mb-4 flex items-center gap-3 sm:mb-5">
+          <span className="h-px w-7 bg-[#9B111E] sm:w-8" />
+
+          <span className="text-[10px] uppercase tracking-[0.22em] text-white/40 sm:text-xs sm:tracking-[0.25em]">
+            {t.why.label}
+          </span>
+        </div>
+
+        <h2 className="text-[36px] font-semibold leading-[1.08] tracking-tight sm:text-5xl">
+          {t.why.title}
+          <br />
+          <span className="text-white/35">
+            {t.why.titleAccent}
+          </span>
+        </h2>
+
+        <p className="mt-6 max-w-md text-sm leading-7 text-white/40 sm:mt-7">
+          {t.why.description}
+        </p>
+
+        <a
+          href={whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-7 inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:text-[#9B111E] sm:mt-8 sm:text-xs sm:tracking-[0.18em]"
+        >
+          {t.why.work}
+          <ArrowRight size={15} />
+        </a>
+      </div>
+
+      {/* Features */}
+      <div className="grid border-l border-t border-white/10 sm:grid-cols-2">
+        {[
+          {
+            icon: ShieldCheck,
+            title: t.why.features[0].title,
+            text: t.why.features[0].text,
+          },
+          {
+            icon: Clock3,
+            title: t.why.features[1].title,
+            text: t.why.features[1].text,
+          },
+          {
+            icon: ClipboardCheck,
+            title: t.why.features[2].title,
+            text: t.why.features[2].text,
+          },
+          {
+            icon: Star,
+            title: t.why.features[3].title,
+            text: t.why.features[3].text,
+          },
+        ].map((feature, index) => {
+          const Icon = feature.icon;
+
+          return (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group min-h-[210px] border-b border-r border-white/10 p-6 transition hover:bg-white/[0.025] sm:min-h-[240px] sm:p-8"
+            >
+              <div className="flex h-11 w-11 items-center justify-center border border-white/10 transition group-hover:border-[#9B111E]/50">
+                <Icon
+                  size={20}
+                  strokeWidth={1.4}
+                  className="text-[#9B111E]"
+                />
+              </div>
+
+              <h3 className="mt-7 text-base font-medium sm:mt-10 sm:text-lg">
+                {feature.title}
+              </h3>
+
+              <p className="mt-3 text-sm leading-6 text-white/40 sm:mt-4">
+                {feature.text}
+              </p>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* =========================================================
-          LICENSE MODAL
-      ========================================================= */}
+    SERVICES
+========================================================= */}
+<section
+  id="services"
+  className="border-t border-white/10 bg-[#0C0C0C]"
+>
+  <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-32">
+
+    {/* Header */}
+    <div className="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end lg:gap-10">
+      <div>
+        <div className="mb-4 flex items-center gap-3 sm:mb-5">
+          <span className="h-px w-7 bg-[#9B111E] sm:w-8" />
+
+          <span className="text-[10px] uppercase tracking-[0.22em] text-white/40 sm:text-xs sm:tracking-[0.25em]">
+            {t.services.label}
+          </span>
+        </div>
+
+        <h2 className="max-w-3xl text-[36px] font-semibold leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
+          {t.services.title}
+          <br />
+          <span className="text-white/30">
+            {t.services.titleAccent}
+          </span>
+        </h2>
+      </div>
+
+      <p className="max-w-xl text-sm leading-7 text-white/40">
+        {t.services.description}
+      </p>
+    </div>
+
+    {/* Services List */}
+    <div className="mt-12 border-t border-white/10 sm:mt-16 lg:mt-20">
+      {services.map((service, index) => {
+        const Icon = service.icon;
+
+        return (
+          <motion.a
+            href={whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            key={service.number}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.5,
+              delay: index * 0.04,
+            }}
+            className="group relative grid min-h-[155px] grid-cols-[42px_1fr_48px] items-center gap-3 overflow-hidden border-b border-white/10 px-1 transition duration-500 sm:grid-cols-[70px_1fr_auto] sm:gap-6 sm:px-4 lg:grid-cols-[120px_1fr_80px] lg:gap-8 lg:px-5"
+          >
+
+            {/* Hover Background */}
+            <div className="absolute inset-0 -z-0 -translate-x-[101%] bg-[#9B111E] transition-transform duration-500 ease-out group-hover:translate-x-0" />
+
+            {/* Number */}
+            <div className="relative z-10">
+              <span className="text-xs tracking-[0.18em] text-white/25 transition-colors duration-300 group-hover:text-white/60 sm:text-sm sm:tracking-[0.2em]">
+                {service.number}
+              </span>
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 py-7 sm:py-8">
+              <h3 className="text-[16px] font-medium leading-6 transition-colors duration-300 group-hover:text-white sm:text-2xl sm:leading-normal lg:text-3xl">
+                {isArabic ? service.arTitle : service.title}
+              </h3>
+
+              <p className="mt-2 max-w-2xl text-[13px] leading-6 text-white/35 transition-colors duration-300 group-hover:text-white/75 sm:mt-3 sm:text-sm">
+                {isArabic
+                  ? service.arDescription
+                  : service.description}
+              </p>
+            </div>
+
+            {/* Icon */}
+            <div className="relative z-10 flex h-10 w-10 items-center justify-center border border-white/10 transition-all duration-300 group-hover:border-white/40 group-hover:bg-white/10 sm:h-12 sm:w-12">
+              <Icon
+                size={19}
+                strokeWidth={1.4}
+                className="text-white/35 transition-colors duration-300 group-hover:text-white sm:size-5"
+              />
+            </div>
+
+            {/* Desktop Arrow */}
+            <div
+              className={`absolute top-1/2 hidden -translate-y-1/2 lg:block ${
+                isArabic ? "left-5" : "right-5"
+              }`}
+              dir="ltr"
+            >
+              <ArrowRight
+                size={20}
+                className={`opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${
+                  isArabic
+                    ? "translate-x-2"
+                    : "-translate-x-2"
+                }`}
+              />
+            </div>
+          </motion.a>
+        );
+      })}
+    </div>
+
+    {/* Bottom CTA */}
+    <div className="mt-8 flex flex-col gap-6 border-t border-white/10 pt-7 sm:mt-10 sm:flex-row sm:items-center sm:justify-between sm:pt-8">
+      <div>
+        <span className="text-[10px] uppercase tracking-[0.18em] text-white/25 sm:text-xs sm:tracking-[0.2em]">
+          {t.services.need}
+        </span>
+
+        <p className="mt-2 max-w-md text-sm leading-6 text-white/50">
+          {t.services.tell}
+        </p>
+      </div>
+
+      <a
+        href={whatsapp}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:text-[#9B111E] sm:text-xs sm:tracking-[0.18em]"
+      >
+        {t.services.request}
+        <ArrowRight size={16} />
+      </a>
+    </div>
+  </div>
+</section>
+
+{/* =========================================================
+    LICENSE MODAL
+========================================================= */}
       <AnimatePresence>
         {licenseOpen && (
           <motion.div
@@ -1077,338 +1132,390 @@ export default function Home() {
       </AnimatePresence>
 
       {/* =========================================================
-          PROJECTS
-      ========================================================= */}
-      <section
-        id="projects"
-        className="border-t border-white/10 bg-[#080808]"
+    PROJECTS
+========================================================= */}
+<section
+  id="projects"
+  className="border-t border-white/10 bg-[#080808]"
+>
+  <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-32">
+
+    {/* Header */}
+    <div className="flex flex-col justify-between gap-7 md:flex-row md:items-end md:gap-8">
+      <div>
+        <div className="mb-4 flex items-center gap-3 sm:mb-5">
+          <span className="h-px w-7 bg-[#9B111E] sm:w-8" />
+
+          <span className="text-[10px] uppercase tracking-[0.22em] text-white/40 sm:text-xs sm:tracking-[0.25em]">
+            {t.projects.label}
+          </span>
+        </div>
+
+        <h2 className="text-[36px] font-semibold leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
+          {t.projects.title}
+          <br />
+          <span className="text-white/30">
+            {t.projects.titleAccent}
+          </span>
+        </h2>
+      </div>
+
+      <p className="max-w-sm text-sm leading-7 text-white/40">
+        {t.projects.description}
+      </p>
+    </div>
+
+    {/* Slider */}
+    <div className="relative mt-12 sm:mt-16 lg:mt-20">
+      <motion.div
+        key={activeProject}
+        initial={{ opacity: 0, scale: 0.985 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.45 }}
+        className="group relative aspect-[4/5] min-h-[480px] overflow-hidden bg-[#111] sm:aspect-[16/9] sm:min-h-[560px]"
       >
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-            <div>
-              <div className="mb-5 flex items-center gap-3">
-                <span className="h-px w-8 bg-[#9B111E]" />
+        <img
+          src={projects[activeProject].image}
+          alt={projects[activeProject].title}
+          className="absolute inset-0 h-full w-full object-cover transition duration-1000 group-hover:scale-[1.02]"
+        />
 
-                <span className="text-xs uppercase tracking-[0.25em] text-white/40">
-                  {t.projects.label}
-                </span>
-              </div>
+        {/* Overlays */}
+        <div className="absolute inset-0 bg-black/20" />
 
-              <h2 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-                {t.projects.title}
-<br />
-<span className="text-white/30">
-  {t.projects.titleAccent}
-</span>
-              </h2>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/20" />
+
+        {/* Number */}
+        <div className="absolute left-5 top-5 sm:left-10 sm:top-10">
+          <span className="text-[10px] tracking-[0.25em] text-white/65 sm:text-xs sm:tracking-[0.3em]">
+            {String(activeProject + 1).padStart(2, "0")} /{" "}
+            {String(projects.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        {/* Content */}
+        <div
+          className={`absolute bottom-0 left-0 right-0 p-5 sm:p-10 lg:p-12 ${
+            isArabic ? "text-right" : "text-left"
+          }`}
+        >
+          <div className="max-w-3xl">
+            <div className="mb-2 text-[9px] uppercase tracking-[0.25em] text-[#D1A1A6] sm:mb-3 sm:text-[10px] sm:tracking-[0.3em]">
+              {isArabic
+                ? projects[activeProject].arCategory
+                : projects[activeProject].category}
             </div>
 
-            <p className="max-w-sm text-sm leading-7 text-white/40">
-              {t.projects.description}
+            <h3 className="text-[28px] font-medium leading-tight tracking-tight sm:text-5xl">
+              {isArabic
+                ? projects[activeProject].arTitle
+                : projects[activeProject].title}
+            </h3>
+
+            <p className="mt-3 max-w-xl text-[13px] leading-6 text-white/55 sm:mt-4 sm:text-sm">
+              {t.projects.workDescription}
+            </p>
+          </div>
+        </div>
+
+        {/* Arrows */}
+        <div
+          dir="ltr"
+          className={`absolute bottom-5 z-20 flex gap-2 sm:bottom-10 ${
+            isArabic
+              ? "left-5 sm:left-10"
+              : "right-5 sm:right-10"
+          }`}
+        >
+          <button
+            type="button"
+            onClick={previousProject}
+            className="flex h-11 w-11 items-center justify-center border border-white/25 bg-black/30 backdrop-blur-sm transition duration-300 hover:border-white hover:bg-[#9B111E] sm:h-12 sm:w-12"
+            aria-label={t.projects.previous}
+          >
+            <ChevronLeft
+              size={19}
+              strokeWidth={1.5}
+            />
+          </button>
+
+          <button
+            type="button"
+            onClick={nextProject}
+            className="flex h-11 w-11 items-center justify-center border border-white/25 bg-black/30 backdrop-blur-sm transition duration-300 hover:border-white hover:bg-[#9B111E] sm:h-12 sm:w-12"
+            aria-label={t.projects.next}
+          >
+            <ChevronRight
+              size={19}
+              strokeWidth={1.5}
+            />
+          </button>
+        </div>
+      </motion.div>
+
+      {/* Indicators */}
+      <div className="mt-4 flex items-center justify-between gap-4 sm:mt-5">
+        <div className="flex gap-1.5 sm:gap-2">
+          {projects.map((project, index) => (
+            <button
+              key={project.title}
+              type="button"
+              onClick={() => setActiveProject(index)}
+              className={`h-1 transition-all duration-300 ${
+                activeProject === index
+                  ? "w-9 bg-[#9B111E] sm:w-12"
+                  : "w-5 bg-white/15 hover:bg-white/30 sm:w-6"
+              }`}
+              aria-label={`Go to project ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        <span className="text-[9px] uppercase tracking-[0.18em] text-white/25 sm:text-[10px] sm:tracking-[0.2em]">
+          {activeProject + 1} — {projects.length}
+        </span>
+      </div>
+    </div>
+
+    {/* CTA */}
+    <div className="mt-8 flex flex-col items-start justify-between gap-5 border-t border-white/10 pt-7 sm:mt-10 sm:flex-row sm:items-center sm:pt-8">
+      <div>
+        <span className="text-[10px] uppercase tracking-[0.18em] text-white/25 sm:text-xs sm:tracking-[0.2em]">
+          {t.projects.have}
+        </span>
+
+        <p className="mt-2 text-sm leading-6 text-white/45">
+          {t.projects.discuss}
+        </p>
+      </div>
+
+      <a
+        href={whatsapp}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-3 bg-[#9B111E] px-5 py-3.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition hover:bg-[#6E0F18] sm:px-6 sm:text-xs sm:tracking-[0.15em]"
+      >
+        {t.projects.start}
+        <ArrowRight size={15} />
+      </a>
+    </div>
+  </div>
+</section>
+
+{/* =========================================================
+    LICENSE / TRUST
+========================================================= */}
+<section
+  id="license"
+  className="border-y border-white/10 bg-[#0B0B0B]"
+>
+  <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-32">
+    <div className="grid items-center gap-10 sm:gap-14 lg:grid-cols-[0.85fr_1.15fr]">
+
+      {/* Left */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
+        {/* Badge */}
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#9B111E]/30 bg-[#9B111E]/10 px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.17em] text-[#D48A91] sm:mb-5 sm:px-4 sm:text-xs sm:tracking-[0.2em]">
+          <ShieldCheck size={14} />
+          {t.license.badge}
+        </div>
+
+        {/* Title */}
+        <h2 className="max-w-xl text-[36px] font-semibold leading-[1.08] text-white sm:text-5xl">
+          {t.license.title}
+          <span className="block text-white/35">
+            {t.license.titleAccent}
+          </span>
+        </h2>
+
+        {/* Description */}
+        <p className="mt-5 max-w-xl text-[15px] leading-7 text-white/55 sm:mt-6 sm:text-base sm:leading-8">
+          {t.license.description}
+        </p>
+
+        {/* Stats */}
+        <div className="mt-7 grid grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3 sm:gap-4">
+
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+            <div className="text-2xl font-semibold text-white">
+              08
+            </div>
+
+            <div className="mt-1 text-[11px] leading-5 text-white/40 sm:text-xs">
+              {t.license.activities}
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+            <div className="text-2xl font-semibold text-white">
+              100%
+            </div>
+
+            <div className="mt-1 text-[11px] leading-5 text-white/40 sm:text-xs">
+              {t.license.active}
+            </div>
+          </div>
+
+          <div className="col-span-2 rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:col-span-1 sm:p-5">
+            <div className="text-2xl font-semibold text-white">
+              Dubai
+            </div>
+
+            <div className="mt-1 text-[11px] leading-5 text-white/40 sm:text-xs">
+              {t.license.uae}
+            </div>
+          </div>
+
+        </div>
+
+        {/* Registered Business */}
+        <div className="mt-6 flex items-start gap-3 rounded-2xl border border-[#9B111E]/20 bg-[#9B111E]/5 p-4 sm:mt-8 sm:gap-4 sm:p-5">
+
+          <div className="shrink-0 rounded-xl bg-[#9B111E]/15 p-2.5 text-[#D48A91] sm:p-3">
+            <CheckCircle2 size={20} />
+          </div>
+
+          <div className="min-w-0">
+            <div className="text-sm font-semibold text-white sm:text-base">
+              {t.license.business}
+            </div>
+
+            <p className="mt-1 text-[13px] leading-6 text-white/45 sm:text-sm">
+              {t.license.registered}
             </p>
           </div>
 
-          {/* Slider */}
-          <div className="relative mt-16">
-            <motion.div
-              key={activeProject}
-              initial={{ opacity: 0, scale: 0.985 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.45 }}
-              className="group relative aspect-[16/9] min-h-[420px] overflow-hidden bg-[#111] sm:min-h-[560px]"
-            >
-              <img
-                src={projects[activeProject].image}
-                alt={projects[activeProject].title}
-                className="absolute inset-0 h-full w-full object-cover transition duration-1000 group-hover:scale-[1.02]"
-              />
+        </div>
+      </motion.div>
 
-              <div className="absolute inset-0 bg-black/20" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/20" />
+      {/* Right */}
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+        className="relative"
+      >
+        {/* Glow */}
+        <div className="absolute -inset-4 rounded-[1.5rem] bg-[#9B111E]/10 blur-3xl sm:-inset-6 sm:rounded-[2rem]" />
 
-              {/* Number */}
-              <div className="absolute left-7 top-7 sm:left-10 sm:top-10">
-                <span className="text-xs tracking-[0.3em] text-white/65">
-                  {String(activeProject + 1).padStart(2, "0")} /{" "}
-                  {String(projects.length).padStart(2, "0")}
-                </span>
+        {/* License Card */}
+        <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#111] p-2.5 shadow-2xl sm:rounded-[2rem] sm:p-3">
+
+          {/* Card Header */}
+          <div className="flex items-center justify-between gap-4 px-2.5 py-3 sm:px-3 sm:py-3">
+
+            <div className="min-w-0">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/50 sm:text-xs sm:tracking-[0.18em]">
+                {t.license.company}
               </div>
 
-              {/* Content */}
-              <div className="absolute bottom-0 left-0 right-0 p-7 sm:p-10 lg:p-12">
-                <div className="max-w-3xl">
-                  <div className="mb-3 text-[10px] uppercase tracking-[0.3em] text-[#D1A1A6]">
-                    {isArabic
-  ? projects[activeProject].arCategory
-  : projects[activeProject].category}
-                  </div>
-
-                  <h3 className="text-3xl font-medium tracking-tight sm:text-5xl">
-                    {isArabic
-  ? projects[activeProject].arTitle
-  : projects[activeProject].title}
-                  </h3>
-
-                  <p className="mt-4 max-w-xl text-sm leading-6 text-white/55">
-                    {t.projects.workDescription}
-                  </p>
-                </div>
+              <div className="mt-1 truncate text-xs text-white/30 sm:text-sm">
+                Golden Secrets Technical Services
               </div>
-
-              {/* Arrows */}
-              <div
-  dir="ltr"
-  className={`absolute bottom-7 z-20 flex gap-2 sm:bottom-10 ${
-    isArabic
-      ? "left-7 right-auto sm:left-10"
-      : "right-7 sm:right-10"
-  }`}
->
-                <button
-                  type="button"
-                  onClick={previousProject}
-                  className="flex h-12 w-12 items-center justify-center border border-white/25 bg-black/30 backdrop-blur-sm transition duration-300 hover:border-white hover:bg-[#9B111E]"
-                  aria-label={t.projects.previous}
-                >
-                  <ChevronLeft size={20} strokeWidth={1.5} />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={nextProject}
-                  className="flex h-12 w-12 items-center justify-center border border-white/25 bg-black/30 backdrop-blur-sm transition duration-300 hover:border-white hover:bg-[#9B111E]"
-                  aria-label={t.projects.next}
-                >
-                  <ChevronRight size={20} strokeWidth={1.5} />
-                </button>
-              </div>
-            </motion.div>
-
-            {/* Indicators */}
-            <div className="mt-5 flex items-center justify-between gap-5">
-              <div className="flex gap-2">
-                {projects.map((project, index) => (
-                  <button
-                    key={project.title}
-                    type="button"
-                    onClick={() => setActiveProject(index)}
-                    className={`h-1 transition-all duration-300 ${
-                      activeProject === index
-                        ? "w-12 bg-[#9B111E]"
-                        : "w-6 bg-white/15 hover:bg-white/30"
-                    }`}
-                    aria-label={`Go to project ${index + 1}`}
-                  />
-                ))}
-              </div>
-
-              <span className="text-[10px] uppercase tracking-[0.2em] text-white/25">
-                {activeProject + 1} — {projects.length}
-              </span>
             </div>
+
+            <ShieldCheck
+              className="shrink-0 text-[#9B111E]"
+              size={22}
+            />
           </div>
 
-          {/* CTA */}
-          <div className="mt-10 flex flex-col items-start justify-between gap-5 border-t border-white/10 pt-7 sm:flex-row sm:items-center">
-            <div>
-              <span className="text-xs uppercase tracking-[0.2em] text-white/25">
-                {t.projects.have}
-              </span>
+          {/* License Image */}
+          <button
+            type="button"
+            onClick={() => setLicenseOpen(true)}
+            className="group relative block w-full overflow-hidden rounded-xl bg-white text-left sm:rounded-2xl"
+            aria-label={t.license.view}
+          >
+            <img
+              src="/golden-secrets-license.jpg"
+              alt="Golden Secrets Technical Services License"
+              className="h-auto w-full object-contain transition duration-700 group-hover:scale-[1.015]"
+            />
 
-              <p className="mt-2 text-sm text-white/45">
-                {t.projects.discuss}
-              </p>
+            {/* Hover Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition duration-300 group-hover:bg-black/35">
+              <div className="flex translate-y-3 items-center gap-2 rounded-full border border-white/20 bg-black/70 px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.13em] opacity-0 backdrop-blur-md transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:px-5 sm:py-3 sm:text-xs sm:tracking-[0.15em]">
+                <Maximize2 size={14} />
+                {t.license.view}
+              </div>
             </div>
+          </button>
 
-            <a
-              href={whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#9B111E] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.15em] transition hover:bg-[#6E0F18]"
+          {/* Card Footer */}
+          <div className="flex items-center justify-between gap-4 px-2.5 py-3.5 sm:px-3 sm:py-4">
+
+            <span className="text-[11px] text-white/35 sm:text-xs">
+              Dubai, UAE
+            </span>
+
+            <button
+              type="button"
+              onClick={() => setLicenseOpen(true)}
+              className="text-[11px] font-medium text-[#D48A91] transition hover:text-white sm:text-xs"
             >
-              {t.projects.start}
-              <ArrowRight size={15} />
-            </a>
+              {t.license.view}
+            </button>
+
           </div>
         </div>
-      </section>
+      </motion.div>
+
+    </div>
+  </div>
+</section>
 
 {/* =========================================================
-          LICENSE / TRUST
-      ========================================================= */}
-      <section
-        id="license"
-        className="border-y border-white/10 bg-[#0B0B0B]"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-          <div className="grid items-center gap-14 lg:grid-cols-[0.85fr_1.15fr]">
-            {/* Left */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#9B111E]/30 bg-[#9B111E]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#D48A91]">
-                <ShieldCheck size={15} />
-                {t.license.badge}
-              </div>
-
-              <h2 className="max-w-xl text-4xl font-semibold leading-tight text-white md:text-5xl">
-                {t.license.title}
-                <span className="block text-white/35">{t.license.titleAccent}</span>
-              </h2>
-
-              <p className="mt-6 max-w-xl text-base leading-8 text-white/55">
-                {t.license.description}
-              </p>
-
-              <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-                  <div className="text-2xl font-semibold text-white">08</div>
-                  <div className="mt-1 text-xs text-white/40">
-                    {t.license.activities}
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-                  <div className="text-2xl font-semibold text-white">100%</div>
-                  <div className="mt-1 text-xs text-white/40">
-                    {t.license.active}
-                  </div>
-                </div>
-
-                <div className="col-span-2 rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:col-span-1">
-                  <div className="text-2xl font-semibold text-white">
-                    Dubai
-                  </div>
-                  <div className="mt-1 text-xs text-white/40">
-                    {t.license.uae}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 flex items-start gap-4 rounded-2xl border border-[#9B111E]/20 bg-[#9B111E]/5 p-5">
-                <div className="rounded-xl bg-[#9B111E]/15 p-3 text-[#D48A91]">
-                  <CheckCircle2 size={21} />
-                </div>
-
-                <div>
-                  <div className="font-semibold text-white">
-                    {t.license.business}
-                  </div>
-
-                  <p className="mt-1 text-sm leading-6 text-white/45">
-                    {t.license.registered}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="relative"
-            >
-              <div className="absolute -inset-6 rounded-[2rem] bg-[#9B111E]/10 blur-3xl" />
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#111] p-3 shadow-2xl">
-                {/* Card Header */}
-                <div className="flex items-center justify-between px-3 py-3">
-                  <div>
-                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/50">
-                      {t.license.company}
-                    </div>
-
-                    <div className="mt-1 text-sm text-white/30">
-                      Golden Secrets Technical Services
-                    </div>
-                  </div>
-
-                  <ShieldCheck className="text-[#9B111E]" size={24} />
-                </div>
-
-                {/* License Image */}
-                <button
-                  type="button"
-                  onClick={() => setLicenseOpen(true)}
-                  className="group relative block w-full overflow-hidden rounded-2xl bg-white text-left"
-                  aria-label={t.license.view}
-                >
-                  <img
-                    src="/golden-secrets-license.jpg"
-                    alt="Golden Secrets Technical Services License"
-                    className="h-auto w-full object-contain transition duration-700 group-hover:scale-[1.015]"
-                  />
-
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition duration-300 group-hover:bg-black/35">
-                    <div className="flex translate-y-3 items-center gap-2 rounded-full border border-white/20 bg-black/70 px-5 py-3 text-xs font-semibold uppercase tracking-[0.15em] opacity-0 backdrop-blur-md transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                      <Maximize2 size={15} />
-                      {t.license.view}
-                    </div>
-                  </div>
-                </button>
-
-                {/* Card Footer */}
-                <div className="flex items-center justify-between px-3 py-4">
-                  <span className="text-xs text-white/35">
-                    Dubai, UAE
-                  </span>
-
-                  <button
-                    type="button"
-                    onClick={() => setLicenseOpen(true)}
-                    className="text-xs font-medium text-[#D48A91] transition hover:text-white"
-                  >
-                    {t.license.view}
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact / Request a Quote */}
+    CONTACT / REQUEST A QUOTE
+========================================================= */}
 <section
   id="contact"
-  className="border-t border-white/10 bg-[#0a0a0a] py-24"
+  className="border-t border-white/10 bg-[#0a0a0a]"
 >
-  <div className="mx-auto max-w-7xl px-6 lg:px-8">
+  <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
 
     {/* Heading */}
-    <div className="mb-14 max-w-3xl">
-      <div className="mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#9B111E]">
-        <span className="h-px w-8 bg-[#9B111E]" />
+    <div className="mb-10 max-w-3xl sm:mb-14">
+      <div className="mb-4 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9B111E] sm:text-xs sm:tracking-[0.22em]">
+        <span className="h-px w-7 bg-[#9B111E] sm:w-8" />
         {t.contact.label}
       </div>
 
-      <h2 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+      <h2 className="text-[36px] font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl">
         {t.contact.title}
-        <span className="text-[#9B111E]"> {t.contact.titleAccent}</span>
+        <span className="text-[#9B111E]">
+          {" "}
+          {t.contact.titleAccent}
+        </span>
       </h2>
 
-      <p className="mt-5 max-w-2xl text-sm leading-7 text-white/45 sm:text-base">
+      <p className="mt-4 max-w-2xl text-[15px] leading-7 text-white/45 sm:mt-5 sm:text-base">
         {t.contact.description}
       </p>
     </div>
 
-    <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+    {/* Main Grid */}
+    <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr]">
 
-      {/* Form */}
-      <div className="border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+      {/* =====================================================
+          FORM
+      ===================================================== */}
+      <div className="border border-white/10 bg-white/[0.02] p-5 sm:p-8">
 
-        <div className="mb-8">
+        <div className="mb-7 sm:mb-8">
           <h3 className="text-xl font-semibold text-white">
             {t.contact.request}
           </h3>
 
-          <p className="mt-2 text-sm text-white/40">
+          <p className="mt-2 text-sm leading-6 text-white/40">
             {t.contact.formDescription}
           </p>
         </div>
@@ -1450,7 +1557,7 @@ ${message}`;
           <div className="grid gap-5 sm:grid-cols-2">
 
             <div>
-              <label className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-white/45">
+              <label className="mb-2 block text-[10px] font-medium uppercase tracking-[0.14em] text-white/45 sm:text-xs sm:tracking-[0.15em]">
                 {t.contact.fullName}
               </label>
 
@@ -1464,7 +1571,7 @@ ${message}`;
             </div>
 
             <div>
-              <label className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-white/45">
+              <label className="mb-2 block text-[10px] font-medium uppercase tracking-[0.14em] text-white/45 sm:text-xs sm:tracking-[0.15em]">
                 {t.contact.phone}
               </label>
 
@@ -1481,7 +1588,7 @@ ${message}`;
 
           {/* Email */}
           <div>
-            <label className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-white/45">
+            <label className="mb-2 block text-[10px] font-medium uppercase tracking-[0.14em] text-white/45 sm:text-xs sm:tracking-[0.15em]">
               {t.contact.email}
             </label>
 
@@ -1495,7 +1602,7 @@ ${message}`;
 
           {/* Service */}
           <div>
-            <label className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-white/45">
+            <label className="mb-2 block text-[10px] font-medium uppercase tracking-[0.14em] text-white/45 sm:text-xs sm:tracking-[0.15em]">
               {t.contact.service}
             </label>
 
@@ -1510,46 +1617,62 @@ ${message}`;
               </option>
 
               <option value="Carpentry & Wood Flooring">
-                Carpentry & Wood Flooring
+                {isArabic
+                  ? "أعمال النجارة والأرضيات الخشبية"
+                  : "Carpentry & Wood Flooring"}
               </option>
 
               <option value="Building Cleaning">
-                Building Cleaning
+                {isArabic
+                  ? "خدمات تنظيف المباني"
+                  : "Building Cleaning"}
               </option>
 
               <option value="AC, Ventilation & Air Filtration">
-                AC, Ventilation & Air Filtration
+                {isArabic
+                  ? "تركيب وصيانة التكييف والتهوية وأنظمة تنقية الهواء"
+                  : "AC, Ventilation & Air Filtration"}
               </option>
 
               <option value="Floor & Wall Tiling">
-                Floor & Wall Tiling
+                {isArabic
+                  ? "أعمال تبليط الأرضيات والجدران"
+                  : "Floor & Wall Tiling"}
               </option>
 
               <option value="False Ceiling & Light Partitions">
-                False Ceiling & Light Partitions
+                {isArabic
+                  ? "تركيب الأسقف المستعارة والقواطع الخفيفة"
+                  : "False Ceiling & Light Partitions"}
               </option>
 
               <option value="Plumbing & Sanitary">
-                Plumbing & Sanitary
+                {isArabic
+                  ? "أعمال السباكة والتركيبات الصحية"
+                  : "Plumbing & Sanitary"}
               </option>
 
               <option value="Painting Contracting">
-                Painting Contracting
+                {isArabic
+                  ? "أعمال الدهانات"
+                  : "Painting Contracting"}
               </option>
 
               <option value="Electrical Repair & Maintenance">
-                Electrical Repair & Maintenance
+                {isArabic
+                  ? "إصلاح وصيانة التركيبات الكهربائية"
+                  : "Electrical Repair & Maintenance"}
               </option>
 
               <option value="Other">
-                Other
+                {isArabic ? "خدمة أخرى" : "Other"}
               </option>
             </select>
           </div>
 
           {/* Message */}
           <div>
-            <label className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-white/45">
+            <label className="mb-2 block text-[10px] font-medium uppercase tracking-[0.14em] text-white/45 sm:text-xs sm:tracking-[0.15em]">
               {t.contact.message}
             </label>
 
@@ -1558,46 +1681,50 @@ ${message}`;
               required
               rows={5}
               placeholder={t.contact.messagePlaceholder}
-              className="w-full resize-none border border-white/10 bg-white/[0.03] p-4 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-[#9B111E]"
+              className="w-full resize-none border border-white/10 bg-white/[0.03] p-4 text-sm leading-6 text-white outline-none transition placeholder:text-white/20 focus:border-[#9B111E]"
             />
           </div>
 
           {/* Submit */}
           <button
             type="submit"
-            className="group flex h-13 w-full items-center justify-center gap-3 bg-[#9B111E] px-6 text-sm font-semibold text-white transition hover:bg-[#7f0e19]"
+            className="group flex min-h-[52px] w-full items-center justify-center gap-3 bg-[#9B111E] px-5 text-[13px] font-semibold text-white transition hover:bg-[#7f0e19] sm:px-6 sm:text-sm"
           >
             {t.contact.whatsapp}
 
-            <ArrowRight
-              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-            />
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </button>
 
-          <p className="text-center text-[11px] text-white/25">
-            Your request will open directly in WhatsApp.
+          <p className="text-center text-[10px] leading-5 text-white/25 sm:text-[11px]">
+            {isArabic
+              ? "سيتم فتح طلبك مباشرة في واتساب."
+              : "Your request will open directly in WhatsApp."}
           </p>
 
         </form>
       </div>
 
-      {/* Contact Information */}
-      <div className="flex flex-col justify-between border border-white/10 bg-[#0d0d0d] p-6 sm:p-8">
+      {/* =====================================================
+          CONTACT INFORMATION
+      ===================================================== */}
+      <div className="flex flex-col justify-between border border-white/10 bg-[#0d0d0d] p-5 sm:p-8">
 
         <div>
 
-          <div className="mb-8">
-            <div className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/35">
+          {/* Company */}
+          <div className="mb-8 sm:mb-10">
+            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35 sm:text-xs sm:tracking-[0.2em]">
               {t.contact.company}
             </div>
 
-            <h3 className="text-2xl font-semibold leading-tight text-white">
+            <h3 className="text-[24px] font-semibold leading-[1.15] text-white sm:text-2xl">
               {t.contact.company}
               <br />
               {t.contact.companyTitle2}
             </h3>
           </div>
 
+          {/* Contact Details */}
           <div className="space-y-6">
 
             {/* Phone */}
@@ -1609,8 +1736,8 @@ ${message}`;
                 <Phone className="h-4 w-4" />
               </div>
 
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-white/30">
+              <div className="min-w-0">
+                <div className="text-[10px] uppercase tracking-[0.16em] text-white/30">
                   {t.contact.call}
                 </div>
 
@@ -1629,12 +1756,12 @@ ${message}`;
                 <Mail className="h-4 w-4" />
               </div>
 
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-white/30">
+              <div className="min-w-0">
+                <div className="text-[10px] uppercase tracking-[0.16em] text-white/30">
                   Email
                 </div>
 
-                <div className="mt-1 text-sm text-white/75 transition group-hover:text-white">
+                <div className="mt-1 break-all text-sm text-white/75 transition group-hover:text-white">
                   alasrar@yahoo.com
                 </div>
               </div>
@@ -1646,8 +1773,8 @@ ${message}`;
                 <MapPin className="h-4 w-4" />
               </div>
 
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-white/30">
+              <div className="min-w-0">
+                <div className="text-[10px] uppercase tracking-[0.16em] text-white/30">
                   {t.contact.address}
                 </div>
 
@@ -1663,9 +1790,9 @@ ${message}`;
         </div>
 
         {/* WhatsApp CTA */}
-        <div className="mt-12 border-t border-white/10 pt-8">
+        <div className="mt-10 border-t border-white/10 pt-7 sm:mt-12 sm:pt-8">
 
-          <div className="mb-4 text-xs uppercase tracking-[0.18em] text-white/30">
+          <div className="mb-4 text-[10px] uppercase tracking-[0.16em] text-white/30 sm:text-xs sm:tracking-[0.18em]">
             {t.contact.quick}
           </div>
 
@@ -1673,160 +1800,172 @@ ${message}`;
             href="https://wa.me/971505847430"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 text-sm font-semibold text-white"
+            className="group inline-flex max-w-full items-center gap-3 text-sm font-semibold text-white"
           >
-            <span className="flex h-10 w-10 items-center justify-center border border-white/10 transition group-hover:border-[#9B111E] group-hover:bg-[#9B111E]">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-white/10 transition group-hover:border-[#9B111E] group-hover:bg-[#9B111E]">
               <span className="text-xs font-bold">
                 WA
               </span>
             </span>
 
-            <span>
+            <span className="min-w-0">
               {t.contact.chat}
             </span>
 
-            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+            <ArrowRight className="h-4 w-4 shrink-0 transition group-hover:translate-x-1" />
           </a>
 
         </div>
 
       </div>
-
     </div>
   </div>
 </section>
 
-      {/* =========================================================
-          FOOTER
-      ========================================================= */}
-      <footer className="border-t border-white/10 bg-[#050505]">
-        <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10">
-          <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
-            {/* Brand */}
-            <div>
-              <div className="flex items-center gap-3">
-                <div className="relative h-11 w-11 overflow-hidden rounded-full border border-white/10 bg-white">
-                  <Image
-                    src="/golden-secrets-logo.jpg"
-                    alt="Golden Secrets"
-                    fill
-                    className="object-cover"
-                    sizes="44px"
-                  />
-                </div>
+{/* =========================================================
+    FOOTER
+========================================================= */}
+<footer className="border-t border-white/10 bg-[#050505]">
+  <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-10 lg:py-14">
 
-                <div>
-                  <div className="text-xs font-semibold tracking-[0.18em]">
-                    {t.contact.company}
-                  </div>
+    <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr] md:gap-8 lg:gap-12">
 
-                  <div className="mt-1 text-[8px] tracking-[0.25em] text-white/30">
-                    {isArabic ? "الخدمات الفنية" : "TECHNICAL SERVICES"}
-                  </div>
-                </div>
-              </div>
+      {/* Brand */}
+      <div>
+        <div className="flex items-center gap-3">
+          <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-white/10 bg-white">
+            <Image
+              src="/golden-secrets-logo.jpg"
+              alt="Golden Secrets"
+              fill
+              className="object-cover"
+              sizes="44px"
+            />
+          </div>
 
-              <p className="mt-6 max-w-sm text-sm leading-6 text-white/35">
-                {t.footer.description}
-              </p>
+          <div className="min-w-0">
+            <div className="text-xs font-semibold tracking-[0.16em] sm:tracking-[0.18em]">
+              {t.contact.company}
             </div>
 
-            {/* Contact */}
-            <div>
-              <div className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
-                {t.footer.contact}
-              </div>
-
-              <div className="space-y-4 text-sm text-white/40">
-                <a
-                  href={`tel:${phone}`}
-                  className="flex items-center gap-3 transition hover:text-white"
-                >
-                  <Phone size={15} />
-                  050 584 7430
-                </a>
-
-                <a
-                  href="mailto:alasrar@yahoo.com"
-                  className="flex items-center gap-3 transition hover:text-white"
-                >
-                  <Mail size={15} />
-                  alasrar@yahoo.com
-                </a>
-
-                <div className="flex items-start gap-3">
-                  <MapPin size={15} className="mt-0.5 shrink-0" />
-                  P.O. Box 252262, Dubai, UAE
-                </div>
-              </div>
+            <div className="mt-1 text-[8px] tracking-[0.22em] text-white/30 sm:tracking-[0.25em]">
+              {isArabic ? "الخدمات الفنية" : "TECHNICAL SERVICES"}
             </div>
+          </div>
+        </div>
 
-            {/* Social */}
-<div>
-  <div className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
-    Follow Us
+        <p className="mt-5 max-w-sm text-[13px] leading-6 text-white/35 sm:mt-6 sm:text-sm">
+          {t.footer.description}
+        </p>
+      </div>
+
+      {/* Contact */}
+      <div>
+        <div className="mb-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/50 sm:text-xs sm:tracking-[0.2em]">
+          {t.footer.contact}
+        </div>
+
+        <div className="space-y-4 text-[13px] text-white/40 sm:text-sm">
+
+          <a
+            href={`tel:${phone}`}
+            className="flex items-center gap-3 transition hover:text-white"
+          >
+            <Phone size={15} className="shrink-0" />
+            <span>050 584 7430</span>
+          </a>
+
+          <a
+            href="mailto:alasrar@yahoo.com"
+            className="flex min-w-0 items-center gap-3 transition hover:text-white"
+          >
+            <Mail size={15} className="shrink-0" />
+            <span className="break-all">alasrar@yahoo.com</span>
+          </a>
+
+          <div className="flex items-start gap-3">
+            <MapPin size={15} className="mt-0.5 shrink-0" />
+            <span className="leading-6">
+              P.O. Box 252262
+              <br className="sm:hidden" />
+              <span className="sm:inline">, </span>
+              Dubai, UAE
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Social */}
+      <div>
+        <div className="mb-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/50 sm:text-xs sm:tracking-[0.2em]">
+          {isArabic ? "تابعنا" : "Follow Us"}
+        </div>
+
+        <div className="flex gap-3">
+
+          {/* Instagram */}
+          <a
+            href="https://www.instagram.com/engr.zohair.auklla/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex h-11 w-11 shrink-0 items-center justify-center border border-white/10 text-white/40 transition duration-300 hover:border-[#9B111E] hover:bg-[#9B111E]/10 hover:text-white"
+            aria-label="Instagram"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+          </a>
+
+          {/* TikTok */}
+          <a
+            href="https://www.tiktok.com/@alasrar_althabya?_r=1&_t=ZS-99S6x1qX8L2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex h-11 w-11 shrink-0 items-center justify-center border border-white/10 text-white/40 transition duration-300 hover:border-[#9B111E] hover:bg-[#9B111E]/10 hover:text-white"
+            aria-label="TikTok"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
+              fill="currentColor"
+            >
+              <path d="M16.5 3c.3 1.7 1.3 3.1 3 3.8v3.1c-1.3-.1-2.6-.5-3.7-1.2v6.2c0 4.1-2.6 6.1-5.8 6.1-3 0-5.5-2-5.5-5.2 0-3.4 2.7-5.5 6.1-5.5.4 0 .8 0 1.2.1v3.1c-.4-.1-.8-.2-1.2-.2-1.5 0-2.7.9-2.7 2.4 0 1.4 1 2.3 2.3 2.3 1.5 0 2.5-.9 2.5-2.8V3h3.8z" />
+            </svg>
+          </a>
+
+        </div>
+
+        <p className="mt-4 max-w-xs text-[11px] leading-5 text-white/25 sm:text-xs">
+          {t.footer.social}
+        </p>
+      </div>
+    </div>
+
+    {/* Bottom */}
+    <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-5 text-[9px] uppercase tracking-[0.15em] text-white/20 sm:mt-12 sm:flex-row sm:items-center sm:justify-between sm:pt-6 sm:text-[10px] sm:tracking-[0.18em]">
+      <span>
+        © {new Date().getFullYear()} Golden Secrets Technical Services
+      </span>
+
+      <span>{t.footer.uae}</span>
+    </div>
+
   </div>
-
-  <div className="flex gap-3">
-    {/* Instagram */}
-    <a
-      href="https://www.instagram.com/engr.zohair.auklla/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex h-11 w-11 items-center justify-center border border-white/10 text-white/40 transition duration-300 hover:border-[#9B111E] hover:bg-[#9B111E]/10 hover:text-white"
-      aria-label="Instagram"
-    >
-      <svg
-        viewBox="0 0 24 24"
-        className="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.7"
-      >
-        <rect x="3" y="3" width="18" height="18" rx="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle
-          cx="17.5"
-          cy="6.5"
-          r="1"
-          fill="currentColor"
-          stroke="none"
-        />
-      </svg>
-    </a>
-
-    {/* TikTok */}
-    <a
-      href="https://www.tiktok.com/@alasrar_althabya?_r=1&_t=ZS-99S6x1qX8L2"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex h-11 w-11 items-center justify-center border border-white/10 text-white/40 transition duration-300 hover:border-[#9B111E] hover:bg-[#9B111E]/10 hover:text-white"
-      aria-label="TikTok"
-    >
-      <svg
-        viewBox="0 0 24 24"
-        className="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
-        fill="currentColor"
-      >
-        <path d="M16.5 3c.3 1.7 1.3 3.1 3 3.8v3.1c-1.3-.1-2.6-.5-3.7-1.2v6.2c0 4.1-2.6 6.1-5.8 6.1-3 0-5.5-2-5.5-5.2 0-3.4 2.7-5.5 6.1-5.5.4 0 .8 0 1.2.1v3.1c-.4-.1-.8-.2-1.2-.2-1.5 0-2.7.9-2.7 2.4 0 1.4 1 2.3 2.3 2.3 1.5 0 2.5-.9 2.5-2.8V3h3.8z" />
-      </svg>
-    </a>
-  </div>
-
-  <p className="mt-4 text-xs leading-5 text-white/25">
-  {t.footer.social}
-</p>
-</div>
-</div>
-
-<div className="mt-12 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-[10px] uppercase tracking-[0.18em] text-white/20 sm:flex-row">
-  <span>
-     © {new Date().getFullYear()} Golden Secrets Technical Services
-  </span>
-
-  <span>{t.footer.uae}</span>
-</div>
-</div>
 </footer>
 
 {/* Floating WhatsApp Button */}

@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -16,6 +17,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 * {
@@ -55,4 +57,78 @@ a {
 
 img {
   display: block;
+  max-width: 100%;
+}
+
+/* =========================================================
+   MOBILE POLISH
+========================================================= */
+
+@media (max-width: 639px) {
+  /* Prevent accidental horizontal overflow */
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Better mobile text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Better touch experience */
+  button,
+  a {
+    touch-action: manipulation;
+  }
+
+  /* Keep inputs from zooming on iPhone */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+
+  /* Remove the blue/gray native tap flash */
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 380px) {
+  /* Slightly tighter horizontal spacing */
+  section > div {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
