@@ -56,7 +56,7 @@ const translations = {
       title: "Built on",
       titleAccent: "precision.",
       description:
-        "Golden Secrets Technical Services is a Dubai-based technical services company delivering professional solutions for residential and commercial properties.",
+        "Al Asrar Al Thahabeya Technical Services is a Dubai-based technical services company delivering professional solutions for residential and commercial properties.",
       description2:
         "Our approach combines skilled workmanship, attention to detail and reliable service to ensure every project is completed to a high professional standard.",
       features: [
@@ -68,7 +68,7 @@ const translations = {
     },
 
     why: {
-      label: "Why Golden Secrets",
+      label: "Why AL ASRAR AL THAHABEYA",
       title: "More than",
       titleAccent: "technical work.",
       description:
@@ -126,7 +126,7 @@ const translations = {
       title: "Professional services.",
       titleAccent: "Built on trust.",
       description:
-        "Golden Secrets Technical Services is a licensed Dubai-based technical services company providing reliable installation, maintenance and finishing solutions for residential and commercial properties.",
+        "Al Asrar Al Thahabeya Technical Services is a licensed Dubai-based technical services company providing reliable installation, maintenance and finishing solutions for residential and commercial properties.",
       activities: "Licensed Activities",
       active: "Active Status",
       uae: "United Arab Emirates",
@@ -156,7 +156,7 @@ const translations = {
       messagePlaceholder: "Tell us about your project...",
       whatsapp: "Request Quote via WhatsApp",
       whatsappNote: "Your request will open directly in WhatsApp.",
-      company: "Golden Secrets",
+      company: "AL ASRAR AL THAHABEYA",
       companyTitle: "Professional Technical",
       companyTitle2: "Services in Dubai.",
       call: "Call Us",
@@ -171,7 +171,7 @@ const translations = {
       description:
         "Professional technical services and property maintenance solutions in Dubai, UAE.",
       social:
-        "Follow Golden Secrets Technical Services on Instagram & TikTok.",
+        "Follow Al Asrar Al Thahabeya Technical Services on Instagram & TikTok.",
       uae: "Dubai · United Arab Emirates",
     },
   },
@@ -492,7 +492,7 @@ export default function Home() {
             <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-white/15 bg-white shadow-lg shadow-black/40 md:h-14 md:w-14">
               <Image
                 src="/golden-secrets-logo.jpg"
-                alt="Golden Secrets Technical Services Logo"
+                alt="Al Asrar Al Thahabeya Technical Services Logo"
                 fill
                 priority
                 className="object-cover"
@@ -502,7 +502,7 @@ export default function Home() {
 
             <div className="hidden sm:block">
               <div className="text-sm font-semibold tracking-[0.18em] text-white">
-                GOLDEN SECRETS
+                AL ASRAR AL THAHABEYA
               </div>
 
               <div className="mt-1 text-[9px] uppercase tracking-[0.28em] text-white/40">
@@ -1115,14 +1115,14 @@ export default function Home() {
                 </div>
 
                 <div className="mt-1 text-sm text-white/30">
-                  Golden Secrets Technical Services · Dubai, UAE
+                  Al Asrar Al Thahabeya Technical Services · Dubai, UAE
                 </div>
               </div>
 
               <div className="overflow-hidden rounded-xl bg-white">
                 <img
                   src="/golden-secrets-license.jpg"
-                  alt="Golden Secrets Technical Services Official License"
+                  alt="Al Asrar Al Thahabeya Technical Services Official License"
                   className="h-auto w-full"
                 />
               </div>
@@ -1418,7 +1418,7 @@ export default function Home() {
               </div>
 
               <div className="mt-1 truncate text-xs text-white/30 sm:text-sm">
-                Golden Secrets Technical Services
+                Al Asrar Al Thahabeya Technical Services
               </div>
             </div>
 
@@ -1437,7 +1437,7 @@ export default function Home() {
           >
             <img
               src="/golden-secrets-license.jpg"
-              alt="Golden Secrets Technical Services License"
+              alt="Al Asrar Al Thahabeya Technical Services License"
               className="h-auto w-full object-contain transition duration-700 group-hover:scale-[1.015]"
             />
 
@@ -1533,7 +1533,7 @@ export default function Home() {
             const service = data.get("service");
             const message = data.get("message");
 
-            const text = `Hello Golden Secrets Technical Services,
+            const text = `Hello Al Asrar Al Thahabeya Technical Services,
 
 I would like to request a quote.
 
@@ -1959,7 +1959,7 @@ ${message}`;
     {/* Bottom */}
     <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-5 text-[9px] uppercase tracking-[0.15em] text-white/20 sm:mt-12 sm:flex-row sm:items-center sm:justify-between sm:pt-6 sm:text-[10px] sm:tracking-[0.18em]">
       <span>
-        © {new Date().getFullYear()} Golden Secrets Technical Services
+        © {new Date().getFullYear()} Al Asrar Al Thahabeya Technical Services
       </span>
 
       <span>{t.footer.uae}</span>

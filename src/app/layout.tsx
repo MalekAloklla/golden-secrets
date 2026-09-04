@@ -16,15 +16,15 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://golden-secrets.vercel.app"),
 
   title: {
-    default: "Golden Secrets Technical Services | Dubai",
-    template: "%s | Golden Secrets Technical Services",
+    default: "Al Asrar Al Thahabeya Technical Services | Dubai",
+    template: "%s | Al Asrar Al Thahabeya Technical Services",
   },
 
   description:
-    "Golden Secrets Technical Services — professional technical services, maintenance, and property solutions in Dubai, UAE.",
+    "Al Asrar Al Thahabeya Technical Services — professional technical services, maintenance, and property solutions in Dubai, UAE.",
 
   keywords: [
-    "Golden Secrets Technical Services",
+    "Al Asrar Al Thahabeya Technical Services",
     "Technical Services Dubai",
     "Maintenance Dubai",
     "Home Maintenance Dubai",
@@ -34,16 +34,16 @@ export const metadata: Metadata = {
 
   authors: [
     {
-      name: "Golden Secrets Technical Services",
+      name: "Al Asrar Al Thahabeya Technical Services",
     },
   ],
 
   openGraph: {
-    title: "Golden Secrets Technical Services | Dubai",
+    title: "Al Asrar Al Thahabeya Technical Services | Dubai",
     description:
       "Professional technical services, maintenance, and property solutions in Dubai, UAE.",
     url: "https://golden-secrets.vercel.app",
-    siteName: "Golden Secrets Technical Services",
+    siteName: "Al Asrar Al Thahabeya Technical Services",
     locale: "en_AE",
     type: "website",
     images: [
@@ -51,14 +51,14 @@ export const metadata: Metadata = {
         url: "/golden-secrets-og.png",
         width: 1200,
         height: 630,
-        alt: "Golden Secrets Technical Services — Dubai, UAE",
+        alt: "Al Asrar Al Thahabeya Technical Services — Dubai, UAE",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Golden Secrets Technical Services | Dubai",
+    title: "Al Asrar Al Thahabeya Technical Services | Dubai",
     description:
       "Professional technical services, maintenance, and property solutions in Dubai, UAE.",
     images: ["/golden-secrets-og.png"],
