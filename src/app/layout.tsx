@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,13 +25,22 @@ export const metadata: Metadata = {
     "Al Asrar Al Thahabeya Technical Services — professional technical services, maintenance, and property solutions in Dubai, UAE.",
 
   keywords: [
-    "Al Asrar Al Thahabeya Technical Services",
-    "Technical Services Dubai",
-    "Maintenance Dubai",
-    "Home Maintenance Dubai",
-    "Property Maintenance UAE",
-    "Dubai Technical Services",
-  ],
+  "Al Asrar Al Thahabeya Technical Services",
+  "Technical Services Dubai",
+  "Technical Services Company Dubai",
+  "Maintenance Company Dubai",
+  "Home Maintenance Dubai",
+  "Building Maintenance Dubai",
+  "Property Maintenance Dubai",
+  "AC Maintenance Dubai",
+  "Air Conditioning Maintenance Dubai",
+  "Plumbing Services Dubai",
+  "Electrical Services Dubai",
+  "Painting Services Dubai",
+  "Floor and Wall Tiling Dubai",
+  "False Ceiling Dubai",
+  "Carpentry Services Dubai",
+],
 
   authors: [
     {
@@ -80,7 +90,45 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+  {children}
+
+  <Script
+    id="business-schema"
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        name: "Al Asrar Al Thahabeya Technical Services",
+        url: "https://www.alasraralthahabeya.com",
+        telephone: "+971505847430",
+        email: "alasrar@yahoo.com",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Dubai",
+          addressCountry: "AE",
+          postalCode: "252262",
+        },
+        areaServed: {
+          "@type": "City",
+          name: "Dubai",
+        },
+        priceRange: "$$",
+        serviceType: [
+          "Carpentry & Wood Flooring Works",
+          "Building Cleaning Services",
+          "Air-Conditioning, Ventilation & Air Filtration Systems Installation & Maintenance",
+          "Floor & Wall Tiling Works",
+          "False Ceiling & Light Partitions Installation",
+          "Plumbing & Sanitary Installation",
+          "Painting Contracting",
+          "Electrical Fittings & Fixtures Repairing & Maintenance",
+        ],
+      }),
+    }}
+  />
+</body>
     </html>
   );
 }
