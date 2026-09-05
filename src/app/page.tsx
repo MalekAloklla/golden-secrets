@@ -166,14 +166,18 @@ const translations = {
     },
 
     footer: {
-      contact: "Contact",
-      follow: "Follow Us",
-      description:
-        "Professional technical services and property maintenance solutions in Dubai, UAE.",
-      social:
-        "Follow Al Asrar Al Thahabeya Technical Services on Instagram & TikTok.",
-      uae: "Dubai · United Arab Emirates",
-    },
+  contact: "Contact",
+  hours: "Working Hours",
+  follow: "Follow Us",
+  description:
+    "Professional technical services and property maintenance solutions in Dubai, UAE.",
+  social:
+    "Follow Al Asrar Al Thahabeya Technical Services on Instagram & TikTok.",
+  uae: "Dubai · United Arab Emirates",
+  workingDays: "Monday – Saturday",
+  workingTime: "7:00 AM – 6:00 PM",
+  closed: "Sunday: Closed",
+},
   },
 
   ar: {
@@ -316,14 +320,18 @@ const translations = {
     },
 
     footer: {
-      contact: "تواصل معنا",
-      follow: "تابعنا",
-      description:
-        "خدمات فنية احترافية وحلول متكاملة لصيانة العقارات في دبي، الإمارات.",
-      social:
-        "تابع الأسرار الذهبية للخدمات الفنية على إنستغرام وتيك توك.",
-      uae: "دبي · الإمارات العربية المتحدة",
-    },
+  contact: "تواصل معنا",
+  hours: "ساعات العمل",
+  follow: "تابعنا",
+  description:
+    "خدمات فنية احترافية وحلول متكاملة لصيانة العقارات في دبي، الإمارات.",
+  social:
+    "تابع الأسرار الذهبية للخدمات الفنية على إنستغرام وتيك توك.",
+  uae: "دبي · الإمارات العربية المتحدة",
+  workingDays: "الاثنين – السبت",
+  workingTime: "7:00 صباحًا – 6:00 مساءً",
+  closed: "الأحد: مغلق",
+},
   },
 };
 
@@ -770,10 +778,10 @@ export default function Home() {
             </div>
 
             <div className="border-r border-white/10 px-5">
-              <div className="text-2xl font-semibold">24/7</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-white/40">
-                {t.hero.support}
-              </div>
+              <div className="text-2xl font-semibold">7–6</div>
+<div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-white/40">
+  {isArabic ? "ساعات العمل" : "Working Hours"}
+</div>
             </div>
 
             <div className="pl-5">
@@ -1828,7 +1836,7 @@ ${message}`;
 <footer className="border-t border-white/10 bg-[#050505]">
   <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-10 lg:py-14">
 
-    <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr] md:gap-8 lg:gap-12">
+    <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:gap-8 lg:gap-12">
 
       {/* Brand */}
       <div>
@@ -1893,6 +1901,32 @@ ${message}`;
             </span>
           </div>
 
+        </div>
+      </div>
+
+      {/* Working Hours */}
+      <div>
+        <div className="mb-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/50 sm:text-xs sm:tracking-[0.2em]">
+          {t.footer.hours}
+        </div>
+
+        <div className="space-y-4 text-[13px] text-white/40 sm:text-sm">
+          <div className="flex items-start gap-3">
+            <Clock3 size={15} className="mt-0.5 shrink-0" />
+            <div>
+              <div className="text-white/65">
+                {t.footer.workingDays}
+              </div>
+
+              <div className="mt-1">
+                {t.footer.workingTime}
+              </div>
+            </div>
+          </div>
+
+          <div className="text-[#D48A91]">
+            {t.footer.closed}
+          </div>
         </div>
       </div>
 
