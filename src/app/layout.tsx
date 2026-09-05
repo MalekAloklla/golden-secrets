@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.alasraralthahabeya.com"),
+  
+  alternates: {
+  canonical: "https://www.alasraralthahabeya.com",
+  },
 
   title: {
     default: "Al Asrar Al Thahabeya Technical Services | Dubai",
