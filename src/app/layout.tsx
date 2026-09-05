@@ -78,10 +78,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-
-  icons: {
-    icon: "/golden-secrets-logo.jpg",
-  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
