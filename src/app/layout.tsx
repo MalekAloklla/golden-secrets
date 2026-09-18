@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import Script from "next/script";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.alasraralthahabeya.com"),
-  
+
   alternates: {
-  canonical: "https://www.alasraralthahabeya.com",
+    canonical: "https://www.alasraralthahabeya.com",
   },
 
   title: {
@@ -29,22 +29,22 @@ export const metadata: Metadata = {
     "Al Asrar Al Thahabeya Technical Services — professional technical services, maintenance, and property solutions in Dubai, UAE.",
 
   keywords: [
-  "Al Asrar Al Thahabeya Technical Services",
-  "Technical Services Dubai",
-  "Technical Services Company Dubai",
-  "Maintenance Company Dubai",
-  "Home Maintenance Dubai",
-  "Building Maintenance Dubai",
-  "Property Maintenance Dubai",
-  "AC Maintenance Dubai",
-  "Air Conditioning Maintenance Dubai",
-  "Plumbing Services Dubai",
-  "Electrical Services Dubai",
-  "Painting Services Dubai",
-  "Floor and Wall Tiling Dubai",
-  "False Ceiling Dubai",
-  "Carpentry Services Dubai",
-],
+    "Al Asrar Al Thahabeya Technical Services",
+    "Technical Services Dubai",
+    "Technical Services Company Dubai",
+    "Maintenance Company Dubai",
+    "Home Maintenance Dubai",
+    "Building Maintenance Dubai",
+    "Property Maintenance Dubai",
+    "AC Maintenance Dubai",
+    "Air Conditioning Maintenance Dubai",
+    "Plumbing Services Dubai",
+    "Electrical Services Dubai",
+    "Painting Services Dubai",
+    "Floor and Wall Tiling Dubai",
+    "False Ceiling Dubai",
+    "Carpentry Services Dubai",
+  ],
 
   authors: [
     {
@@ -91,44 +91,87 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-  {children}
+        {children}
 
-  <Script
-    id="business-schema"
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        name: "Al Asrar Al Thahabeya Technical Services",
-        url: "https://www.alasraralthahabeya.com",
-        telephone: "+971505847430",
-        email: "alasrar@yahoo.com",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Dubai",
-          addressCountry: "AE",
-          postalCode: "252262",
-        },
-        areaServed: {
-          "@type": "City",
-          name: "Dubai",
-        },
-        priceRange: "$$",
-        serviceType: [
-          "Carpentry & Wood Flooring Works",
-          "Building Cleaning Services",
-          "Air-Conditioning, Ventilation & Air Filtration Systems Installation & Maintenance",
-          "Floor & Wall Tiling Works",
-          "False Ceiling & Light Partitions Installation",
-          "Plumbing & Sanitary Installation",
-          "Painting Contracting",
-          "Electrical Fittings & Fixtures Repairing & Maintenance",
-        ],
-      }),
-    }}
-  />
-</body>
+        <Script
+          id="business-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+
+              name: "Al Asrar Al Thahabeya Technical Services",
+
+              url: "https://www.alasraralthabeya.com",
+
+              logo: "https://www.alasraralthabeya.com/golden-secrets-logo.jpg",
+
+              image:
+                "https://www.alasraralthabeya.com/golden-secrets-logo.jpg",
+
+              description:
+                "Al Asrar Al Thahabeya Technical Services provides professional technical services, maintenance, and property solutions in Dubai, UAE.",
+
+              telephone: "+971505847430",
+
+              email: "alasrar@yahoo.com",
+
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Dubai",
+                addressCountry: "AE",
+              },
+
+              areaServed: {
+                "@type": "City",
+                name: "Dubai",
+              },
+
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                  ],
+                  opens: "07:00",
+                  closes: "18:00",
+                },
+              ],
+
+              sameAs: [
+                "https://www.instagram.com/engr.zohair.auklla/",
+                "https://www.tiktok.com/@alasrar_althabya",
+              ],
+
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+971505847430",
+                contactType: "customer service",
+                availableLanguage: ["English", "Arabic"],
+              },
+
+              priceRange: "$$",
+
+              serviceType: [
+                "Carpentry & Wood Flooring Works",
+                "Building Cleaning Services",
+                "Air-Conditioning, Ventilation & Air Filtration Systems Installation & Maintenance",
+                "Floor & Wall Tiling Works",
+                "False Ceiling & Light Partitions Installation",
+                "Plumbing & Sanitary Installation",
+                "Painting Contracting",
+                "Electrical Fittings & Fixtures Repairing & Maintenance",
+              ],
+            }),
+          }}
+        />
+      </body>
     </html>
   );
 }
