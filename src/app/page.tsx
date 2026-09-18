@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -337,85 +338,93 @@ const translations = {
 
 const services = [
   {
-  number: "01",
-  title: "Carpentry & Wood Flooring",
-  arTitle: "أعمال النجارة والأرضيات الخشبية",
-  description:
-    "Professional carpentry, custom woodwork and premium wood flooring solutions.",
-  arDescription:
-    "أعمال نجارة احترافية، وتصاميم خشبية مخصصة، وحلول متخصصة للأرضيات الخشبية.",
-  icon: Wrench,
-},
+    number: "01",
+    title: "Carpentry & Wood Flooring",
+    arTitle: "أعمال النجارة والأرضيات الخشبية",
+    description:
+      "Professional carpentry, custom woodwork and premium wood flooring solutions.",
+    arDescription:
+      "أعمال نجارة احترافية، وتصاميم خشبية مخصصة، وحلول متخصصة للأرضيات الخشبية.",
+    icon: Wrench,
+    href: "/services/carpentry-wood-flooring",
+  },
   {
-  number: "02",
-  title: "Building Cleaning",
-  arTitle: "خدمات تنظيف المباني",
-  description:
-    "Reliable cleaning solutions for residential, commercial and building spaces.",
-  arDescription:
-    "حلول تنظيف موثوقة للمباني والمساحات السكنية والتجارية.",
-  icon: Sparkles,
-},
+    number: "02",
+    title: "Building Cleaning",
+    arTitle: "خدمات تنظيف المباني",
+    description:
+      "Reliable cleaning solutions for residential, commercial and building spaces.",
+    arDescription:
+      "حلول تنظيف موثوقة للمباني والمساحات السكنية والتجارية.",
+    icon: Sparkles,
+    href: "/services/building-cleaning",
+  },
   {
-  number: "03",
-  title: "Air Conditioning & Ventilation",
-  arTitle: "تكييف الهواء والتهوية",
-  description:
-    "Installation, maintenance and servicing of air-conditioning, ventilation and filtration systems.",
-  arDescription:
-    "تركيب وصيانة وخدمة أنظمة التكييف والتهوية وتنقية الهواء.",
-  icon: Clock3,
-},
+    number: "03",
+    title: "Air Conditioning & Ventilation",
+    arTitle: "تكييف الهواء والتهوية",
+    description:
+      "Installation, maintenance and servicing of air-conditioning, ventilation and filtration systems.",
+    arDescription:
+      "تركيب وصيانة وخدمة أنظمة التكييف والتهوية وتنقية الهواء.",
+    icon: Clock3,
+    href: "/services/ac-maintenance",
+  },
   {
-  number: "04",
-  title: "Floor & Wall Tiling",
-  arTitle: "تركيب بلاط الأرضيات والجدران",
-  description:
-    "Precise floor and wall tiling with professional finishing and attention to detail.",
-  arDescription:
-    "تركيب دقيق لبلاط الأرضيات والجدران مع تشطيبات احترافية واهتمام بأدق التفاصيل.",
-  icon: CheckCircle2,
-},
+    number: "04",
+    title: "Floor & Wall Tiling",
+    arTitle: "تركيب بلاط الأرضيات والجدران",
+    description:
+      "Precise floor and wall tiling with professional finishing and attention to detail.",
+    arDescription:
+      "تركيب دقيق لبلاط الأرضيات والجدران مع تشطيبات احترافية واهتمام بأدق التفاصيل.",
+    icon: CheckCircle2,
+    href: "/services/floor-wall-tiling",
+  },
   {
-  number: "05",
-  title: "False Ceiling & Light Partitions",
-  arTitle: "الأسقف المستعارة والقواطع الخفيفة",
-  description:
-    "Modern false ceilings and light partition systems designed for practical and elegant spaces.",
-  arDescription:
-    "تنفيذ الأسقف المستعارة وأنظمة القواطع الخفيفة لتوفير مساحات عملية وأنيقة.",
-  icon: ClipboardCheck,
-},
+    number: "05",
+    title: "False Ceiling & Light Partitions",
+    arTitle: "الأسقف المستعارة والقواطع الخفيفة",
+    description:
+      "Modern false ceilings and light partition systems designed for practical and elegant spaces.",
+    arDescription:
+      "تنفيذ الأسقف المستعارة وأنظمة القواطع الخفيفة لتوفير مساحات عملية وأنيقة.",
+    icon: ClipboardCheck,
+    href: "/services/false-ceiling-light-partitions",
+  },
   {
-  number: "06",
-  title: "Plumbing & Sanitary Installation",
-  arTitle: "أعمال السباكة والصرف الصحي",
-  description:
-    "Professional plumbing, sanitary installations, repairs and maintenance.",
-  arDescription:
-    "أعمال سباكة وتركيبات صحية وإصلاحات وصيانة باحترافية.",
-  icon: Wrench,
-},
+    number: "06",
+    title: "Plumbing & Sanitary Installation",
+    arTitle: "أعمال السباكة والصرف الصحي",
+    description:
+      "Professional plumbing, sanitary installations, repairs and maintenance.",
+    arDescription:
+      "أعمال سباكة وتركيبات صحية وإصلاحات وصيانة باحترافية.",
+    icon: Wrench,
+    href: "/services/plumbing-sanitary",
+  },
   {
-  number: "07",
-  title: "Painting Contracting",
-  arTitle: "أعمال الدهانات",
-  description:
-    "Interior and exterior painting with clean preparation and high-quality finishing.",
-  arDescription:
-    "أعمال دهانات داخلية وخارجية مع تجهيز دقيق وتشطيبات عالية الجودة.",
-  icon: Sparkles,
-},
+    number: "07",
+    title: "Painting Contracting",
+    arTitle: "أعمال الدهانات",
+    description:
+      "Interior and exterior painting with clean preparation and high-quality finishing.",
+    arDescription:
+      "أعمال دهانات داخلية وخارجية مع تجهيز دقيق وتشطيبات عالية الجودة.",
+    icon: Sparkles,
+    href: "/services/painting",
+  },
   {
-  number: "08",
-  title: "Electrical Repair & Maintenance",
-  arTitle: "إصلاح وصيانة الأعمال الكهربائية",
-  description:
-    "Electrical fittings, fixtures, repairs and maintenance for residential and commercial properties.",
-  arDescription:
-    "إصلاح وصيانة التركيبات والتجهيزات الكهربائية للمباني السكنية والتجارية.",
-  icon: ShieldCheck,
-},
+    number: "08",
+    title: "Electrical Repair & Maintenance",
+    arTitle: "إصلاح وصيانة الأعمال الكهربائية",
+    description:
+      "Electrical fittings, fixtures, repairs and maintenance for residential and commercial properties.",
+    arDescription:
+      "إصلاح وصيانة التركيبات والتجهيزات الكهربائية للمباني السكنية والتجارية.",
+    icon: ShieldCheck,
+    href: "/services/electrical",
+  },
 ];
 
 const projects = [
@@ -1641,127 +1650,121 @@ export default function Home() {
     </div>
 
     {/* =====================================================
-        SERVICES GRID
-    ===================================================== */}
-    <div className="mt-12 grid gap-3 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
-      {services.map((service, index) => {
-        const Icon = service.icon;
+    SERVICES GRID
+===================================================== */}
+<div className="mt-12 grid gap-3 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+  {services.map((service, index) => {
+    const Icon = service.icon;
 
-        /*
-         * Different image for every service.
-         * These can later be replaced with real company project photos.
-         */
-        const serviceImages = [
-  "/services/carpentry.png",
-  "/services/cleaning.png",
-  "/services/ac.png",
-  "/services/tiling.png",
-  "/services/ceiling.png",
-  "/services/plumbing.png",
-  "/services/painting.png",
-  "/services/electrical.png",
-];
+    /*
+     * Different image for every service.
+     * These can later be replaced with real company project photos.
+     */
+    const serviceImages = [
+      "/services/carpentry.png",
+      "/services/cleaning.png",
+      "/services/ac.png",
+      "/services/tiling.png",
+      "/services/ceiling.png",
+      "/services/plumbing.png",
+      "/services/painting.png",
+      "/services/electrical.png",
+    ];
 
-        return (
-          <motion.a
-            key={service.number}
-            href={whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.55,
-              delay: index * 0.06,
-            }}
-            className="group relative min-h-[330px] overflow-hidden border border-white/10 bg-[#101010] sm:min-h-[360px]"
+    return (
+      <a
+        key={service.number}
+        href={service.href}
+        className="group relative block min-h-[330px] overflow-hidden border border-white/10 bg-[#101010] sm:min-h-[360px]"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.55,
+            delay: index * 0.06,
+          }}
+          className="absolute inset-0"
+        >
+          {/* Image */}
+          <img
+            src={serviceImages[index]}
+            alt={isArabic ? service.arTitle : service.title}
+            className="absolute inset-0 h-full w-full object-cover opacity-55 grayscale transition-all duration-700 group-hover:scale-110 group-hover:opacity-75 group-hover:grayscale-0"
+          />
+
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10 transition duration-500 group-hover:via-black/45" />
+
+          {/* Red hover wash */}
+          <div className="absolute inset-0 bg-[#9B111E]/0 transition duration-500 group-hover:bg-[#9B111E]/10" />
+
+          {/* Top line */}
+          <div
+            className={`absolute top-0 h-[2px] w-0 bg-[#9B111E] transition-all duration-500 group-hover:w-full ${
+              isArabic ? "right-0" : "left-0"
+            }`}
+          />
+
+          {/* Number */}
+          <div
+            className={`absolute top-5 text-[10px] font-medium tracking-[0.25em] text-white/45 sm:top-6 ${
+              isArabic ? "right-5" : "left-5"
+            }`}
           >
-            {/* Image */}
-            <img
-              src={serviceImages[index]}
-              alt={
-                isArabic
-                  ? service.arTitle
-                  : service.title
-              }
-              className="absolute inset-0 h-full w-full object-cover opacity-55 grayscale transition-all duration-700 group-hover:scale-110 group-hover:opacity-75 group-hover:grayscale-0"
+            {service.number}
+          </div>
+
+          {/* Icon */}
+          <div
+            className={`absolute top-5 flex h-10 w-10 items-center justify-center border border-white/15 bg-black/25 backdrop-blur-md transition-all duration-500 group-hover:border-[#9B111E]/60 group-hover:bg-[#9B111E]/80 ${
+              isArabic ? "left-5" : "right-5"
+            }`}
+          >
+            <Icon
+              size={18}
+              strokeWidth={1.3}
+              className="text-white/70 transition-colors group-hover:text-white"
             />
+          </div>
 
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10 transition duration-500 group-hover:via-black/45" />
+          {/* Content */}
+          <div
+            className={`absolute bottom-0 left-0 right-0 p-5 sm:p-6 ${
+              isArabic ? "text-right" : "text-left"
+            }`}
+          >
+            <div className="mb-2 h-px w-7 bg-[#9B111E] transition-all duration-500 group-hover:w-12" />
 
-            {/* Red hover wash */}
-            <div className="absolute inset-0 bg-[#9B111E]/0 transition duration-500 group-hover:bg-[#9B111E]/10" />
+            <h3 className="text-[17px] font-medium leading-6 text-white sm:text-lg">
+              {isArabic ? service.arTitle : service.title}
+            </h3>
 
-            {/* Top line */}
-            <div
-              className={`absolute top-0 h-[2px] w-0 bg-[#9B111E] transition-all duration-500 group-hover:w-full ${
-                isArabic ? "right-0" : "left-0"
-              }`}
-            />
+            <p className="mt-2 max-h-0 overflow-hidden text-[12px] leading-5 text-white/65 opacity-0 transition-all duration-500 group-hover:max-h-20 group-hover:opacity-100 sm:text-[13px]">
+              {isArabic ? service.arDescription : service.description}
+            </p>
 
-            {/* Number */}
-            <div
-              className={`absolute top-5 text-[10px] font-medium tracking-[0.25em] text-white/45 sm:top-6 ${
-                isArabic ? "right-5" : "left-5"
-              }`}
-            >
-              {service.number}
-            </div>
+            <div className="mt-3 flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35 transition-colors group-hover:text-white/70">
+              <span>
+                {isArabic ? "عرض تفاصيل الخدمة" : "View service details"}
+              </span>
 
-            {/* Icon */}
-            <div
-              className={`absolute top-5 flex h-10 w-10 items-center justify-center border border-white/15 bg-black/25 backdrop-blur-md transition-all duration-500 group-hover:border-[#9B111E]/60 group-hover:bg-[#9B111E]/80 ${
-                isArabic ? "left-5" : "right-5"
-              }`}
-            >
-              <Icon
-                size={18}
-                strokeWidth={1.3}
-                className="text-white/70 transition-colors group-hover:text-white"
+              <ArrowRight
+                size={13}
+                className={`transition-transform duration-300 ${
+                  isArabic
+                    ? "group-hover:-translate-x-1"
+                    : "group-hover:translate-x-1"
+                }`}
               />
             </div>
-
-            {/* Content */}
-            <div
-              className={`absolute bottom-0 left-0 right-0 p-5 sm:p-6 ${
-                isArabic ? "text-right" : "text-left"
-              }`}
-            >
-              <div className="mb-2 h-px w-7 bg-[#9B111E] transition-all duration-500 group-hover:w-12" />
-
-              <h3 className="text-[17px] font-medium leading-6 text-white sm:text-lg">
-                {isArabic
-                  ? service.arTitle
-                  : service.title}
-              </h3>
-
-              <p className="mt-2 max-h-0 overflow-hidden text-[12px] leading-5 text-white/65 opacity-0 transition-all duration-500 group-hover:max-h-20 group-hover:opacity-100 sm:text-[13px]">
-                {isArabic
-                  ? service.arDescription
-                  : service.description}
-              </p>
-
-              <div className="mt-3 flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35 transition-colors group-hover:text-white/70">
-                <span>
-                  {isArabic ? "اطلب الخدمة" : "Request service"}
-                </span>
-
-                <ArrowRight
-                  size={13}
-                  className={`transition-transform duration-300 ${
-                    isArabic
-                      ? "group-hover:-translate-x-1"
-                      : "group-hover:translate-x-1"
-                  }`}
-                />
-              </div>
-            </div>
-          </motion.a>
-        );
-      })}
-    </div>
+          </div>
+        </motion.div>
+      </a>
+    );
+  })}
+</div>
 
     {/* =====================================================
         BOTTOM CTA
